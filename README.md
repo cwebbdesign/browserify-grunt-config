@@ -7,6 +7,7 @@ A quick demo of trying my external browserify bundle setup.
 
     git clone https://github.com/cwebbdesign/browserify-grunt-config
     npm install
+    grunt dist
     node server
 
   Go to localhost:8080/index.html
