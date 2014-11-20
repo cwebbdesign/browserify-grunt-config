@@ -8,23 +8,31 @@ var opts = {
 
 // this works
 //var b = browserify(xtend(opts, {entries: ['./src/js/main.js']}));
-
 // so does this
-var b = browserify(opts);
-b.add('./src/js/main.js')
-b.external('./src/js/a.js');
-b.bundle().pipe(fs.createWriteStream('./dist/js/dist.main.js'));
+// b.add('./src/js/main.js')
 
-var c = browserify(opts);
-c.require('./src/js/a.js', {expose: './src/js/a.js'});
-c.external(['./src/js/b.js', './src/js/common.js']);
-c.bundle().pipe(fs.createWriteStream('./dist/js/dist.a.js'));
+// Main Entry
+browserify(opts)
+	.add('./src/js/main.js')
+	.external('./src/js/a.js')
+	.bundle().pipe(fs.createWriteStream('./dist/js/dist.main.js'));
 
-var d = browserify(opts);
-d.require('./src/js/b.js', {expose: './src/js/b.js'});
-d.external('./src/js/common.js')
-d.bundle().pipe(fs.createWriteStream('./dist/js/dist.b.js'));
 
-var common = browserify(opts);
-common.require('./src/js/common.js', {expose: './src/js/common.js'});
-common.bundle().pipe(fs.createWriteStream('./dist/js/dist.common.js'));
+// Common Modules
+browserify(opts)
+	.require('./src/js/common.js', {expose: './src/js/common.js'})
+	.bundle().pipe(fs.createWriteStream('./dist/js/dist.common.js'));
+
+
+// a.js
+browserify(opts)
+	.require('./src/js/a.js', {expose: './src/js/a.js'})
+	.external(['./src/js/b.js', './src/js/common.js'])
+	.bundle().pipe(fs.createWriteStream('./dist/js/dist.a.js'));
+
+
+// b.js
+browserify(opts)
+	.require('./src/js/b.js', {expose: './src/js/b.js'})
+	.external('./src/js/common.js')
+	.bundle().pipe(fs.createWriteStream('./dist/js/dist.b.js'));

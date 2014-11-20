@@ -25,11 +25,7 @@ module.exports = {
 
             transform: [],
             external: ['./src/js/a.js'],
-            browserifyOptions: {
-                basedir:process.cwd(),//__dirname,//process.cwd(),
-                fullPaths:false,
-                debug: true
-            }
+            browserifyOptions: bOpts
         }
     },
     a: {
