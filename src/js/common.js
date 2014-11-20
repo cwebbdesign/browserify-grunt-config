@@ -1,3 +1,3 @@
 module.exports = function () {
-	return 'Everybody needs me'
+	return 'Everybody needs me';
 }

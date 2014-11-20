@@ -1,5 +1,5 @@
 function callback () {
-	console.log('in main')
+	console.log('in main');
 	var a = require('./a.js');
 	a();
 };
