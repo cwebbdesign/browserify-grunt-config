@@ -5,6 +5,6 @@ function callback () {
 };
 
 window.yepnope([{
-    load:         ['/dist/js/dist.a.js', '/dist/js/dist.b.js'],
+    load:         ['/dist/js/dist.common.js','/dist/js/dist.a.js', '/dist/js/dist.b.js'],
     complete: callback
 }]);
